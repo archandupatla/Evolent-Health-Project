@@ -31,9 +31,9 @@ this.storeContacts.updateContacts(this.contacts).subscribe((res)=>{console.log(r
 }
 
 deleteContacts(index){
-    this.contacts.splice(index,1);
-    this.contactsChange.emit(this.contacts.slice());
-    this.deleteContactEvent.emit();
-    this.storeContacts.updateContacts(this.contacts).subscribe((res)=>{console.log(res)}, (error)=>{console.log(error)});
+this.contacts.splice(index,1);
+this.contactsChange.emit(this.contacts.slice());
+this.deleteContactEvent.emit();
+this.storeContacts.updateContacts(this.contacts).subscribe((res)=>{console.log(res)}, (error)=>{console.log(error)});
 }
 }

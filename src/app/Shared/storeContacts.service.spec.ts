@@ -18,7 +18,7 @@ let httpTestMock: HttpTestingController;
   it('expects get contacts to fetch data from server',
   inject([HttpTestingController, StoreContacts],
     (httpMock: HttpTestingController, service: StoreContacts) => {
-      service.getContacts().subscribe(data => {
+      service.getContacts().subscribe((data) => {
         expect(data).toBeTruthy();
       });
       const req = httpMock.expectOne('https://evolent-health-6b426.firebaseio.com/data.json');

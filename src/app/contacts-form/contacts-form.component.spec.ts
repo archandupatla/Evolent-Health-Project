@@ -104,7 +104,7 @@ describe('ContactsFormComponent', () => {
     })
   }))
   it('should check if form submits the data', (()=>{
-        const spy = spyOn(component, 'onSubmit');
+        spyOn(component, 'onSubmit');
         const form = fixture.debugElement.query(By.css('form'));
         form.triggerEventHandler('submit', null);
         fixture.detectChanges();

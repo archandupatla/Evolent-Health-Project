@@ -3,17 +3,14 @@ import { ContactService } from './ContactService';
 import { StoreContacts } from './StoreContacts.service';
 import { ContactModel } from './ContactModel';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClient } from 'selenium-webdriver/http';
-import { store } from '@angular/core/src/render3/instructions';
-import { of } from 'rxjs/internal/observable/of';
 
 describe('ContactService', () => {
-  let testContactsService: ContactService;
-  let testStoreContacts: jasmine.SpyObj<StoreContacts>
+  // let testContactsService: ContactService;
+  // let testStoreContacts: jasmine.SpyObj<StoreContacts>
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('storeContacts', ['updateContacts'])
+    const testStoreContacts = jasmine.createSpyObj('storeContacts', ['updateContacts'])
     TestBed.configureTestingModule({
-      providers: [ContactService, {provide:StoreContacts, useValue:spy}],
+      providers: [ContactService, {provide:StoreContacts, useValue:testStoreContacts}],
       imports:[HttpClientModule]
     });
   });
@@ -43,4 +40,19 @@ describe('ContactService', () => {
       expect(val.length).toBe(contacts.length - 1);
     })
   }));
+  it('add contacts method should add contacts and emit updated contacts', inject([ContactService], (service: ContactService)=>{
+    spyOn(service, 'addContacts');
+    let length = service.contacts.length;
+    service.addContacts({data:'test'});
+    service.contactsChange.subscribe((data)=>{
+      expect(data.length).toBe(length+1)
+    })
+  }))
+  it('update contacts method should take updated contact object and emit the updated contacts array', inject([ContactService], (service: ContactService)=>{
+    spyOn(service, 'updateContacts');
+    service.updateContacts({data1:'test1'});
+    service.contactsChange.subscribe((contacts)=>{
+      expect(contacts[0].data1).toBe('test1')
+    })
+  }))
 });
