@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form [formGroup]="contactsForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="firstname">FirstName</label>
+          <input type="text" id="firstname" class="form-control" formControlName="firstname">
+          <span *ngIf="!contactsForm.get('firstname').valid && contactsForm.get('firstname').touched"
+           class="help-block">This field is required</span>
+        </div>
+        <div class="form-group">
+          <label for="lastname">LastName</label>
+          <input type="text" id="lastname" class="form-control" formControlName="lastname">
+          <span *ngIf="!contactsForm.get('lastname').valid && contactsForm.get('lastname').touched" 
+          class="help-block">This field is required</span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" formControlName="email">
+          <span *ngIf="!contactsForm.get('email').valid && contactsForm.get('email').touched" 
+          class="help-block">
+          <span *ngIf="contactsForm.get('email').errors['emailInvalid']" 
+          class="help-block">Email address exists in the contacts </span>
+          <span *ngIf="contactsForm.get('email').errors['email']" 
+          class="help-block">Please enter valid email address</span>
+          <span *ngIf="contactsForm.get('email').errors['required']" 
+          class="help-block">This field is required</span>
+        </span>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" class="form-control" formControlName="phone">
+          <span *ngIf="!contactsForm.get('phone').valid && contactsForm.get('phone').touched" 
+          class="help-block">
+          <span *ngIf="contactsForm.get('phone').errors['required']" 
+          class="help-block">This field is required</span>
+          <span *ngIf="contactsForm.get('phone').errors['phoneInvalid']" 
+          class="help-block">Please enter valid phone number</span>
+          <span *ngIf="contactsForm.get('phone').errors['dupePhone']" 
+          class="help-block">Phone number already exists</span>
+        </span>
+        </div>
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select id="status" class="form-control" formControlName="status">
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+      <button [disabled]="!contactsForm.valid" class="btn btn-primary" type="submit">Submit</button>
+    </form>
+  </div>
+</div>

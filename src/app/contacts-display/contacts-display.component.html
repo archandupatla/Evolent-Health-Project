@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <th></th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Status</th></tr>
+  </thead>
+  <tbody>
+    
+  <tr *ngFor="let contact of contacts; let i = index">
+    <td><span class="glyphicon glyphicon-pencil" (click)="editItem(i)"></span>|<span class="glyphicon glyphicon-trash" (click)="deleteItem(i)"></span></td>
+    <td>{{contact.firstname}}</td>
+    <td>{{contact.lastname}}</td>
+    <td>{{contact.email}}</td>
+    <td>{{contact.phone}}</td>
+    <td>{{contact.status}}</td>
+  </tr>
+  </tbody>
+</table>
