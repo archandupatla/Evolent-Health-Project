@@ -1,23 +1,23 @@
 import { TestBed, async, inject } from '@angular/core/testing';
-import { storeContacts } from './storeContacts.service';
+import { StoreContacts } from './StoreContacts.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-describe('storeContacts', () => {
+describe('StoreContacts', () => {
 let httpClientSpy: {get: jasmine.Spy}
-let service: storeContacts;
+let service: StoreContacts;
 let httpTestMock: HttpTestingController;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
       ],
-      providers:[storeContacts],
+      providers:[StoreContacts],
       imports:[HttpClientTestingModule]
     }).compileComponents();
-    service = TestBed.get(storeContacts);
+    service = TestBed.get(StoreContacts);
     httpTestMock = TestBed.get(HttpTestingController)
   }));
   it('expects get contacts to fetch data from server',
-  inject([HttpTestingController, storeContacts],
-    (httpMock: HttpTestingController, service: storeContacts) => {
+  inject([HttpTestingController, StoreContacts],
+    (httpMock: HttpTestingController, service: StoreContacts) => {
       service.getContacts().subscribe(data => {
         expect(data).toBeTruthy();
       });
@@ -27,8 +27,8 @@ let httpTestMock: HttpTestingController;
     })
 );
 it('expects update contacts to push data to server',
-inject([HttpTestingController, storeContacts],
-  (httpMock: HttpTestingController, service: storeContacts) => {
+inject([HttpTestingController, StoreContacts],
+  (httpMock: HttpTestingController, service: StoreContacts) => {
     let contacts = [{firstname:"test", lastname:"test", email:"test", phone:"test", status:"test"}];
     service.updateContacts(contacts).subscribe(data => {
       expect(data).toBeTruthy();

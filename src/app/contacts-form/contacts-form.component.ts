@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { contactModel } from '../Shared/contactModel';
-import { contactService } from '../Shared/ContactService';
-import {validators} from '../Shared/Validators.service';
+import { ContactModel } from '../Shared/ContactModel';
+import { ContactService } from '../Shared/ContactService';
+import {ValidatorFunctions} from '../Shared/Validators.service';
 
 @Component({
   selector: 'contacts-form',
@@ -12,16 +12,16 @@ import {validators} from '../Shared/Validators.service';
 export class ContactsFormComponent implements OnInit {
   contactsForm: FormGroup;
   editMode:boolean = false;
-  contactModel: contactModel;
-  constructor(private contactService: contactService, private validatorService: validators) { }
+  contactModel: ContactModel;
+  constructor(private contactService: ContactService, private validatorService: ValidatorFunctions) { }
 
   ngOnInit() {
     if(!this.editMode){
     this.contactsForm = new FormGroup({
       'firstname': new FormControl(null, Validators.required),
       'lastname': new FormControl(null, Validators.required),
-      'email':new FormControl(null, [Validators.required,Validators.email, validators.dupeEmailValidator]),
-      'phone': new FormControl(null, [Validators.required, validators.phoneNumberValidator, validators.dupePhoneNumber]),
+      'email':new FormControl(null, [Validators.required,Validators.email, ValidatorFunctions.dupeEmailValidator]),
+      'phone': new FormControl(null, [Validators.required, ValidatorFunctions.phoneNumberValidator, ValidatorFunctions.dupePhoneNumber]),
       'status': new FormControl('Active')
     })
   }

@@ -1,15 +1,15 @@
-import {contactModel} from './contactModel';
+import {ContactModel} from './ContactModel';
 import {EventEmitter, Injectable} from '@angular/core';
-import { storeContacts } from './storeContacts.service';
+import { StoreContacts } from './StoreContacts.service';
 @Injectable()
-export class contactService{
-contacts: contactModel[] = [];
-constructor(private storeContacts: storeContacts){
+export class ContactService{
+contacts: ContactModel[] = [];
+constructor(private storeContacts: StoreContacts){
 }
 index: number;
 dupeRecordValidationCheck = new EventEmitter<void>();
-contactsChange = new EventEmitter<contactModel[]>();
-editModeContacts = new EventEmitter<contactModel>();
+contactsChange = new EventEmitter<ContactModel[]>();
+editModeContacts = new EventEmitter<ContactModel>();
 deleteContactEvent = new EventEmitter<void>();
 
 addContacts(conctactDetail){
@@ -18,17 +18,6 @@ this.contactsChange.emit(this.contacts.slice());
 this.dupeRecordValidationCheck.emit();
 this.storeContacts.updateContacts(this.contacts).subscribe((res)=>{console.log(res)}, (error)=>{console.log(error)});
 }
-// returnContacts(){
-//      this.storeContacts.getContacts().subscribe((res:Response)=>{
-//        if(res.json()){
-//          this.contacts = res.json();
-//        }
-//      })
-//      return new Promise((resolve, reject)=>{
-//        resolve(this.contacts);
-//      })
-// }
-
 editContact(index){
 this.editModeContacts.emit(this.contacts[index]);
   this.index = index;

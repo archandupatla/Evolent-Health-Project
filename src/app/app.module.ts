@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ContactsDisplayComponent } from './contacts-display/contacts-display.component';
-import { contactService } from './Shared/ContactService';
-import { storeContacts } from './Shared/storeContacts.service';
+import { ContactService } from './Shared/ContactService';
+import { StoreContacts } from './Shared/StoreContacts.service';
 import { HttpModule } from '@angular/http';
 import { ContactsFormComponent } from './contacts-form/contacts-form.component';
-import { validators } from './Shared/Validators.service';
+import { ValidatorFunctions } from './Shared/Validators.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [contactService, storeContacts, validators],
+  providers: [ContactService, StoreContacts, ValidatorFunctions],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,7 +11,7 @@
   <tbody>
     
   <tr *ngFor="let contact of contacts; let i = index">
-    <td><span class="glyphicon glyphicon-pencil" (click)="editItem(i)"></span>|<span class="glyphicon glyphicon-trash" (click)="deleteItem(i)"></span></td>
+    <td><span class="glyphicon glyphicon-pencil" (click)="editItem(i)"></span>|<span id='del' class="glyphicon glyphicon-trash" (click)="deleteItem(i)"></span></td>
     <td>{{contact.firstname}}</td>
     <td>{{contact.lastname}}</td>
     <td>{{contact.email}}</td>

@@ -1,25 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ContactsFormComponent } from './contacts-form.component';
-import { contactService } from '../Shared/ContactService';
-import { storeContacts } from '../Shared/storeContacts.service';
-import { BrowserModule } from '@angular/platform-browser';
+import { ContactService } from '../Shared/ContactService';
+import { StoreContacts } from '../Shared/StoreContacts.service';
+import { BrowserModule, By } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { validators } from '../Shared/Validators.service';
+import { ValidatorFunctions } from '../Shared/Validators.service';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('ContactsFormComponent', () => {
   let component: ContactsFormComponent;
   let fixture: ComponentFixture<ContactsFormComponent>;
-//  let contactServiceStub: Partial<contactService>;
-  // contactServiceStub = {
-  //   contacts: [{firstname:'test', lastname:'test', email:'test@test.com', phone:'12345678901', status:'active'}],  
-  //  };
-  let testcontactsService: contactService;
+  let testcontactsService: ContactService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ContactsFormComponent ],
-      providers:[contactService , storeContacts, validators],
+      providers:[ContactService , StoreContacts, ValidatorFunctions],
       imports:[BrowserModule, ReactiveFormsModule, HttpClientModule]
     })
     .compileComponents();
@@ -29,7 +24,7 @@ describe('ContactsFormComponent', () => {
     fixture = TestBed.createComponent(ContactsFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    testcontactsService = TestBed.get(contactService);
+    testcontactsService = TestBed.get(ContactService);
   });
 
   it('should create', () => {
@@ -91,7 +86,6 @@ describe('ContactsFormComponent', () => {
   });
   it('Should check the service', () => {
     fixture.detectChanges();
-   //expect(component.dummy).toContain(testcontactsService.dummy)
   });
   it('should check if edit mode is truthy', (()=>{
     testcontactsService.editModeContacts.subscribe((val)=>{
@@ -110,8 +104,10 @@ describe('ContactsFormComponent', () => {
     })
   }))
   it('should check if form submits the data', (()=>{
-    let length = testcontactsService.contacts.length;
-    component.onSubmit();
-    expect(testcontactsService.contacts.length).toBe(length+1);
-  }))
+        const spy = spyOn(component, 'onSubmit');
+        const form = fixture.debugElement.query(By.css('form'));
+        form.triggerEventHandler('submit', null);
+        fixture.detectChanges();
+        expect(component.onSubmit).toHaveBeenCalled();
+  })) 
 });

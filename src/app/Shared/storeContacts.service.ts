@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import {HttpClient} from '@angular/common/http'
-import { contactModel } from "./contactModel";
+import { ContactModel } from "./ContactModel";
 
 @Injectable()
-export class storeContacts{
+export class StoreContacts{
 constructor(private http: HttpClient){}
-updateContacts(contacts: contactModel[]){
+updateContacts(contacts: ContactModel[]){
     return this.http.put("https://evolent-health-6b426.firebaseio.com/data.json", contacts);
 }
 getContacts(){

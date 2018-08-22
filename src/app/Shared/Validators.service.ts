@@ -1,17 +1,17 @@
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import { Injectable } from '@angular/core';
-import { contactService } from './ContactService';
+import { ContactService } from './ContactService';
 @Injectable()
-export class validators{
+export class ValidatorFunctions{
   static contactsService;
   static editMode;
-  constructor(private contactsService: contactService){
-     validators.contactsService = contactsService;
-          validators.contactsService.dupeRecordValidationCheck.subscribe(()=>{
-          validators.editMode = null;
+  constructor(private contactsService: ContactService){
+    ValidatorFunctions.contactsService = contactsService;
+    ValidatorFunctions.contactsService.dupeRecordValidationCheck.subscribe(()=>{
+      ValidatorFunctions.editMode = null;
         })
-      validators.contactsService.editModeContacts.subscribe((val)=>{
-          validators.editMode = val;
+        ValidatorFunctions.contactsService.editModeContacts.subscribe((val)=>{
+          ValidatorFunctions.editMode = val;
         });   
   }
       static phoneNumberValidator(control: FormControl) : {[s: string]: boolean}{
@@ -23,24 +23,24 @@ export class validators{
           }
           
       static dupeEmailValidator(control: FormControl) : {[s: string]: boolean}{
-         let contacts = validators.contactsService.contacts;
+         let contacts = ValidatorFunctions.contactsService.contacts;
             for(let contact of contacts){
-              if(validators.editMode && validators.editMode.email !== control.value && control.value === contact.email){
+              if(ValidatorFunctions.editMode && ValidatorFunctions.editMode.email !== control.value && control.value === contact.email){
                   return {'emailInvalid': true}   
               } 
-               else if(!validators.editMode && control.value === contact.email){
+               else if(!ValidatorFunctions.editMode && control.value === contact.email){
                 return {'emailInvalid': true}
               }
             }
            return null;
           }     
           static dupePhoneNumber(control: FormControl) : {[s: string]: boolean}{
-            let contacts = validators.contactsService.contacts;
+            let contacts = ValidatorFunctions.contactsService.contacts;
                 for(let contact of contacts){
-                  if(validators.editMode && validators.editMode.phone !== control.value && control.value === contact.phone){
+                  if(ValidatorFunctions.editMode && ValidatorFunctions.editMode.phone !== control.value && control.value === contact.phone){
                     return {'dupePhone': true}   
                 }
-                  else if(!validators.editMode && control.value === contact.phone){
+                  else if(!ValidatorFunctions.editMode && control.value === contact.phone){
                     return {'dupePhone': true}
                   }
                 }

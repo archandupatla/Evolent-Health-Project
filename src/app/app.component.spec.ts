@@ -3,9 +3,9 @@ import { AppComponent } from './app.component';
 import {ContactsDisplayComponent} from './contacts-display/contacts-display.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactsFormComponent } from './contacts-form/contacts-form.component';
-import { contactService } from './Shared/ContactService';
-import { storeContacts } from './Shared/storeContacts.service';
-import { validators } from './Shared/Validators.service';
+import { ContactService } from './Shared/ContactService';
+import { StoreContacts } from './Shared/StoreContacts.service';
+import { ValidatorFunctions } from './Shared/Validators.service';
 import { HttpClientModule } from '@angular/common/http';
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -13,7 +13,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,ContactsDisplayComponent, ContactsFormComponent],
       imports:[FormsModule, ReactiveFormsModule, HttpClientModule],
-      providers:[contactService, storeContacts, validators ]
+      providers:[ContactService, StoreContacts, ValidatorFunctions ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {

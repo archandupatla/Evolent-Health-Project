@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { contactService } from '../Shared/ContactService';
-import { contactModel } from '../Shared/contactModel';
-import { storeContacts } from '../Shared/storeContacts.service';
+import { ContactService } from '../Shared/ContactService';
+import { ContactModel } from '../Shared/ContactModel';
+import { StoreContacts } from '../Shared/StoreContacts.service';
 import{Response} from '@angular/http';
 import {EventEmitter} from "@angular/core";
 
@@ -11,9 +11,9 @@ import {EventEmitter} from "@angular/core";
   styleUrls: ['./contacts-display.component.css']
 })
 export class ContactsDisplayComponent implements OnInit {
-  contacts: contactModel[] = [];
-  emitContacts = new EventEmitter<contactModel[]>();
-  constructor(private contactService: contactService, private storeContacts: storeContacts) { }
+  contacts: ContactModel[] = [];
+  emitContacts = new EventEmitter<ContactModel[]>();
+  constructor(private contactService: ContactService, private storeContacts: StoreContacts) { }
 
   ngOnInit() {
   //  this.contactService.returnContacts((data)=>{
@@ -26,7 +26,7 @@ export class ContactsDisplayComponent implements OnInit {
   //       this.contactService.contacts = this.contacts;
   //     }
   // });
-  this.storeContacts.getContacts().subscribe((contacts:contactModel[])=>{
+  this.storeContacts.getContacts().subscribe((contacts:ContactModel[])=>{
     if(contacts){
     this.contacts= contacts
     this.contactService.contacts = this.contacts;

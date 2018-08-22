@@ -1,23 +1,23 @@
 import { async, ComponentFixture, TestBed, inject, fakeAsync } from '@angular/core/testing';
-
 import { ContactsDisplayComponent } from './contacts-display.component';
-import { storeContacts } from '../Shared/storeContacts.service';
+import { StoreContacts } from '../Shared/StoreContacts.service';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { contactService } from '../Shared/ContactService';
+import { BrowserModule, By } from '@angular/platform-browser';
+import { ContactService } from '../Shared/ContactService';
 import {  of } from 'rxjs';
 import 'rxjs/observable/from';
 import { HttpClientModule } from '@angular/common/http';
+
 describe('ContactsDisplayComponent', () => {
   let component: ContactsDisplayComponent;
   let fixture: ComponentFixture<ContactsDisplayComponent>;
-  let testcontactsService: contactService;
-  let testStoreContacts: storeContacts;
+  let testcontactsService: ContactService;
+  let testStoreContacts: StoreContacts;
  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ContactsDisplayComponent ],
-      providers:[storeContacts, contactService],
+      providers:[StoreContacts, ContactService],
       imports:[FormsModule, BrowserModule, HttpClientModule]
     })
     .compileComponents();
@@ -26,8 +26,8 @@ describe('ContactsDisplayComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ContactsDisplayComponent);
     component = fixture.componentInstance;
-    testcontactsService = TestBed.get(contactService);
-    testStoreContacts = TestBed.get(storeContacts);
+    testcontactsService = TestBed.get(ContactService);
+    testStoreContacts = TestBed.get(StoreContacts);
   });
 
   it('should create', () => {
@@ -39,24 +39,8 @@ it('should load contacts from server', (()=>{
   fixture.detectChanges();
   expect(component.contacts.length).toBe(1);
 }))
-// it('should load contacts from server', (()=>{
-//   let contacts;
-//   spyOn(testStoreContacts,'getContacts').and.
-//   returnValue(of((res: Response)=>{
-//     if(res.json()){
-//     contacts = res.json();
-//     fixture.detectChanges();
-//     expect(component.contacts.length).toBe(1);
-//     }
-//   }));
-// }))
 it('should edit the contact from contacts array', (()=>{
   component.editItem(1);
   expect(testcontactsService.index).toBe(1);
-}))
-it('should delete the contact from contacts array', (()=>{
-  let length = testcontactsService.contacts.length;
-  component.deleteItem(0);
-  expect(length).toBe(0);
 }))
 });
