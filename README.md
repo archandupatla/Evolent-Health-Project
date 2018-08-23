@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.4.
 
 ## Development server
-Download the project from github link 
+Download the project from github link https://github.com/archandupatla/Evolent-Health-Project and run `npm install` to install the dependencies to run the project.
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
@@ -18,9 +18,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Hosting
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+I've also hosted the app in amazon web services s3. Here's the link: http://evolent-health-project.s3-website.us-east-2.amazonaws.com/
 
 ## Further help
 
