@@ -38,42 +38,42 @@ describe('ContactsFormComponent', () => {
     expect(component.contactsForm.contains('status')).toBeTruthy();
   });
   it('should check required validation for the firstname control', () => {
-    let control = component.contactsForm.get('firstname');
+    const control = component.contactsForm.get('firstname');
     control.setValue('');
     expect(control.valid).toBeFalsy();
   });
   it('should check required validation for the lastname control', () => {
-    let control = component.contactsForm.get('lastname');
+    const control = component.contactsForm.get('lastname');
     control.setValue('');
     expect(control.valid).toBeFalsy();
   });
   it('should check required validation for the email control', () => {
-    let control = component.contactsForm.get('email');
+    const control = component.contactsForm.get('email');
     control.setValue('');
     expect(control.valid).toBeFalsy();
   });
   it('should check proper username format for the email control', () => {
-    let control = component.contactsForm.get('email');
+    const control = component.contactsForm.get('email');
     control.setValue('test@test.com');
     expect(control.valid).toBeTruthy();
   });
   it('should check proper phone number format for the phone control', () => {
-    let control = component.contactsForm.get('phone');
+    const control = component.contactsForm.get('phone');
     control.setValue('test');
     expect(control.valid).toBeFalsy();
   });
   it('should check proper phone number format for the phone control', () => {
-    let control = component.contactsForm.get('phone');
+    const control = component.contactsForm.get('phone');
     control.setValue('12345678901');
     expect(control.valid).toBeFalsy();
   });
   it('should check required validation for the phone control', () => {
-    let control = component.contactsForm.get('phone');
+    const control = component.contactsForm.get('phone');
     control.setValue('');
     expect(control.valid).toBeFalsy();
   });
   it('should check required validation for the status control', () => {
-    let control = component.contactsForm.get('status');
+    const control = component.contactsForm.get('status');
     control.setValue('');
     expect(control.valid).toBeTruthy();
   });

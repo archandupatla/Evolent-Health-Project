@@ -11,7 +11,7 @@ import {ValidatorFunctions} from '../Shared/Validators.service';
 })
 export class ContactsFormComponent implements OnInit {
   contactsForm: FormGroup;
-  editMode:boolean = false;
+  editMode = false;
   contactModel: ContactModel;
   constructor(private contactService: ContactService, private validatorService: ValidatorFunctions) { }
 
@@ -41,10 +41,10 @@ export class ContactsFormComponent implements OnInit {
     })
   }
   onSubmit(){
-        if(!this.editMode){
+  if(!this.editMode){
           this.contactService.addContacts(this.contactsForm.value);
         }
-      else{
+  else{
     this.contactService.updateContacts(this.contactsForm.value);
     this.editMode = false;
       }

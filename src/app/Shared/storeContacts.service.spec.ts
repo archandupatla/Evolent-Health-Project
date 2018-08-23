@@ -29,7 +29,7 @@ let httpTestMock: HttpTestingController;
 it('expects update contacts to push data to server',
 inject([HttpTestingController, StoreContacts],
   (httpMock: HttpTestingController, service: StoreContacts) => {
-    let contacts = [{firstname:"test", lastname:"test", email:"test", phone:"test", status:"test"}];
+    const contacts = [{firstname:"test", lastname:"test", email:"test", phone:"test", status:"test"}];
     service.updateContacts(contacts).subscribe(data => {
       expect(data).toBeTruthy();
     });

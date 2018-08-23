@@ -15,7 +15,7 @@ export class ValidatorFunctions{
         });   
   }
       static phoneNumberValidator(control: FormControl) : {[s: string]: boolean}{
-            let phNo = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+            const phNo = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
             if(control.value && (!control.value.match(phNo) || control.value.length !== 10)){
               return {'phoneInvalid': true}
             }
@@ -23,7 +23,7 @@ export class ValidatorFunctions{
           }
           
       static dupeEmailValidator(control: FormControl) : {[s: string]: boolean}{
-         let contacts = ValidatorFunctions.contactsService.contacts;
+         const contacts = ValidatorFunctions.contactsService.contacts;
             for(let contact of contacts){
               if(ValidatorFunctions.editMode && ValidatorFunctions.editMode.email !== control.value && control.value === contact.email){
                   return {'emailInvalid': true}   
@@ -35,7 +35,7 @@ export class ValidatorFunctions{
            return null;
           }     
           static dupePhoneNumber(control: FormControl) : {[s: string]: boolean}{
-            let contacts = ValidatorFunctions.contactsService.contacts;
+            const contacts = ValidatorFunctions.contactsService.contacts;
                 for(let contact of contacts){
                   if(ValidatorFunctions.editMode && ValidatorFunctions.editMode.phone !== control.value && control.value === contact.phone){
                     return {'dupePhone': true}   

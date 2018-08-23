@@ -25,7 +25,7 @@ describe('ContactService', () => {
   it('edit contacts method should recieve index and emit contact object', inject([ContactService], (service: ContactService) => {
     spyOn(service, 'editContact')
     service.editContact(0);
-    let contacts:ContactModel[] = [{firstname:'test', lastname:'test', email:'test', phone:'test', status:'test'},
+    const contacts:ContactModel[] = [{firstname:'test', lastname:'test', email:'test', phone:'test', status:'test'},
     {firstname:'test2', lastname:'test2', email:'test2', phone:'test2', status:'test2'}];
     service.editModeContacts.subscribe((val)=>{
       expect(contacts[0]).toBe(val);
@@ -34,7 +34,7 @@ describe('ContactService', () => {
   it('delete contacts method should delete contact object from array', inject([ContactService], (service: ContactService) => {
     spyOn(service,'deleteContacts');
     service.deleteContacts(1);
-   let contacts:ContactModel[] = [{firstname:'test', lastname:'test', email:'test', phone:'test', status:'test'},
+   const contacts:ContactModel[] = [{firstname:'test', lastname:'test', email:'test', phone:'test', status:'test'},
     {firstname:'test2', lastname:'test2', email:'test2', phone:'test2', status:'test2'}];
     service.contactsChange.subscribe((val)=>{
       expect(val.length).toBe(contacts.length - 1);
@@ -42,7 +42,7 @@ describe('ContactService', () => {
   }));
   it('add contacts method should add contacts and emit updated contacts', inject([ContactService], (service: ContactService)=>{
     spyOn(service, 'addContacts');
-    let length = service.contacts.length;
+    const length = service.contacts.length;
     service.addContacts({data:'test'});
     service.contactsChange.subscribe((data)=>{
       expect(data.length).toBe(length+1)

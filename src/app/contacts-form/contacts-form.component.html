@@ -3,13 +3,13 @@
     <form [formGroup]="contactsForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="firstname">FirstName</label>
-          <input type="text" id="firstname" class="form-control" formControlName="firstname">
+          <input type="text" id="firstname" class="form-control" formControlName="firstname" maxlength="35">
           <span *ngIf="!contactsForm.get('firstname').valid && contactsForm.get('firstname').touched"
            class="help-block">This field is required</span>
         </div>
         <div class="form-group">
           <label for="lastname">LastName</label>
-          <input type="text" id="lastname" class="form-control" formControlName="lastname">
+          <input type="text" id="lastname" class="form-control" formControlName="lastname" maxlength="35">
           <span *ngIf="!contactsForm.get('lastname').valid && contactsForm.get('lastname').touched" 
           class="help-block">This field is required</span>
         </div>
